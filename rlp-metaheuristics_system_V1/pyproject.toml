@@ -1,0 +1,27 @@
+name = "prlp-metaheuristics"
+version = "0.1.0"
+description = "Project Resource Leveling Problem Metaheuristics Research Framework"
+authors = ["Researcher"]
+license = "MIT"
+requires-python = ">=3.9"
+
+dependencies = [
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "networkx>=3.1",
+    "scipy>=1.10.0",
+    "scikit-learn>=1.3.0",
+    "matplotlib>=3.7.0",
+    "tqdm>=4.65.0",
+    "pyyaml>=6.0",
+    "joblib>=1.3.0",
+    "psplib>=3.0.0",
+    "scikit-posthocs>=0.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "black>=23.0.0",
+    "mypy>=1.4.0",
+]
