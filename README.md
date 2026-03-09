@@ -15,7 +15,42 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 5.ils算子：
 - 局部搜索算子：逐活动优化（对每个活动，在ES-LS范围内搜索最优开始时间，使用first-improvement策略）
 - 扰动算子：多点变异（随机选择perturbation_strength个活动，对每个选中的活动，在ES-LS范围内随机选择新的开始时间）
+## V1.1.2:添加了禁忌搜索（TS）、路径重连（PR）算法及算子  
+### TS可选算子
+1.禁忌表长度（2种）  
+- 静态禁忌列表  
+描述：静态禁忌列表  
+代码：strategy = ‘static’ 
+- 动态禁忌列表  
+描述：初始为固定值n（活动数量），当 “无改进迭代次数” 超过阈值（nr_noimprove==10）时，动态调整长度：从均匀分布(√n ,4√n)中随机选取新长度，增强搜索多样性，避免陷入局部最优。  
+代码：strategy = ‘dynamic’
+### PR可选算子
 
+1.局部搜索 
+
+代码：use_local_search: bool = False or True  
+
+2.解选择策略（2种）  
+- 评估所有解   
+描述：选择路径上的最优解    
+代码：selection_strategy: str = "best"   
+- 随机选择两个解  
+描述：从路径上 随机选择两个解（Su, Sv），然后选优加入解集   
+代码：selection_strategy: str = "random_two"  
+
+3.路径方向（4种）
+- 正向探索  
+描述：从初始解到目标解  
+代码：path_strategy: str = "forward"
+- 反向探索  
+描述：从目标解到初始解  
+代码：path_strategy: str = "backward"
+- 随机探索  
+描述：随机顺序调整活动  
+代码：path_strategy: str = "random"
+- 双向探索  
+描述：随机选择两个解，然后选优（先S0→S00，再S00→S0）  
+代码：path_strategy: str = "bidirectional"
 
 
 
