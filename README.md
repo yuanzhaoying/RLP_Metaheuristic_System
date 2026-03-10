@@ -16,15 +16,21 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 - 局部搜索算子：逐活动优化（对每个活动，在ES-LS范围内搜索最优开始时间，使用first-improvement策略）
 - 扰动算子：多点变异（随机选择perturbation_strength个活动，对每个选中的活动，在ES-LS范围内随机选择新的开始时间）
 ## V1.1.2:添加了禁忌搜索（TS）、路径重连（PR）算法及算子  
+
 ### TS可选算子
+
 1.禁忌表长度（2种）  
 - 静态禁忌列表  
 描述：静态禁忌列表  
 代码：strategy = ‘static’ 
 - 动态禁忌列表  
+参考文献：Li, H., Xu, Z., & Demeulemeester, E. (2015). Scheduling Policies for the Stochastic Resource Leveling Problem. JOURNAL OF CONSTRUCTION ENGINEERING AND MANAGEMENT, 141(2). https://doi.org/10.1061/(ASCE)CO.1943-7862.0000936  
 描述：初始为固定值n（活动数量），当 “无改进迭代次数” 超过阈值（nr_noimprove==10）时，动态调整长度：从均匀分布(√n ,4√n)中随机选取新长度，增强搜索多样性，避免陷入局部最优。  
 代码：strategy = ‘dynamic’
+
 ### PR可选算子
+
+参考文献：Ranjbar, M. (2013). A path-relinking metaheuristic for the resource levelling problem. JOURNAL OF THE OPERATIONAL RESEARCH SOCIETY, 64(7), 1071–1078. https://doi.org/10.1057/jors.2012.119.  
 
 1.局部搜索 
 
