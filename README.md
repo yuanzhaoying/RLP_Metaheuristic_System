@@ -147,7 +147,7 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 4.自适应参数（2种）  
 参考文献：Li, H., Zheng, L., Chen, R., & Zhang, X. (2024). Stochastic resource leveling in projects with flexible structures. COMPUTERS & OPERATIONS RESEARCH, 169. https://doi.org/10.1016/j.cor.2024.106753  
 - 变异算子自适应参数  
-描述：针对rand/1、rand/2、best/1和best/2生效。F = F_max * exp(iteration * log(F_min/F_max) / max_iterations)  
+描述：针对 **rand/1、rand/2、best/1和best/2** 生效。F = F_max * exp(iteration * log(F_min/F_max) / max_iterations)  
 代码：use_adaptive_F: bool = False or True  
 - 交叉算子自适应参数  
 描述：针对所有交叉算子生效。CR = CR_min * exp(iteration * log(CR_max/CR_min) / max_iterations)  
