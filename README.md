@@ -15,7 +15,7 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 5.ils算子：
 - 局部搜索算子：逐活动优化（对每个活动，在ES-LS范围内搜索最优开始时间，使用first-improvement策略）
 - 扰动算子：多点变异（随机选择perturbation_strength个活动，对每个选中的活动，在ES-LS范围内随机选择新的开始时间）
-## V1.1.2:添加了禁忌搜索（TS）、路径重连（PR）算法、遗传（GA）算法及算子  
+## V1.1.2:添加了禁忌搜索（TS）、路径重连（PR）算法、遗传（GA）算法、差分进化（DE）及算子  
 
 ### TS可选算子
 
