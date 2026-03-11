@@ -144,7 +144,7 @@ def generate_all_algorithm_configs():
     
     # PR算法（8种组合）
     path_strategies = ["forward", "backward"]
-    selection_strategies = ["best", "random"]
+    selection_strategies = ["best", "random_two"]  # 修复：使用random_two而不是random
     local_search_options = [True, False]
     
     for path_strat in path_strategies:
@@ -314,11 +314,19 @@ class ExperimentRunner:
                             row[f"param_{key}"] = value
                         results.append(row)
                     except Exception as e:
-                        print(f"Error running {instance_id}/{algo_config[0]}/{seed}: {e}")
+                        import traceback
+                        print(f"\n{'='*80}")
+                        print(f"Error running {instance_id}/{algo_config[0]}/{seed}")
+                        print(f"{'='*80}")
+                        print(f"Error type: {type(e).__name__}")
+                        print(f"Error message: {e}")
+                        print(f"\nFull traceback:")
+                        traceback.print_exc()
+                        print(f"{'='*80}\n")
                         row = {
                             "instance_id": instance_id,
                             "seed": seed,
-                            "best_objective": float('inf'),
+                            "best_objective": 1e10,  # 使用一个很大的数值而不是inf
                             "runtime": 0,
                             "algorithm_name": algo_config[0],
                             "deadline": deadline,
