@@ -108,8 +108,8 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 描述：先升序再降序遍历，确保充分搜索。每隔N代执行一次，平衡计算成本和解质量。算法结束时对最优解再执行一次局部搜索  
 代码：use_local_search=True/False, local_search_interval=10  
 
-### 差分进化（EDA）
-1. 变异算子  
+### 差分进化（DE）
+1. 变异算子（6种）  
 - rand/1  
 描述：随机选择3个个体，v = x_r1 + F * (x_r2 - x_r3)  
 代码：mutation_strategy="rand/1"  
@@ -130,7 +130,7 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 参考文献：庞南生, 纪昌明, & 乞建勋. (2009). 基于MDE资源分时段与活动平移并行的均衡优化. 中国管理科学, 17(06), 130–138. https://doi.org/10.16381/j.cnki.issn1003-207x.2009.06.005  
 描述：当前个体x_current，随机选择4个个体，v = x_current + K * (x_r1 - x_r2 + x_r3 - x_r4)，K为自适应参数，K = K0 * (2 ** np.exp(1 - t_max/(t_max+1-t)))  
 代码：mutation_strategy="current-to-rand/2"  
-2. 交叉算子  
+2. 交叉算子（2种）  
 - 二项交叉  
 描述：对每个位置，以概率CR选择变异向量的值  
 代码：crossover_strategy="bin"  
@@ -144,7 +144,7 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 描述：对前local_search_top个最优个体执行交换操作，随机选择两个位置进行交换，修复约束违反  
 代码：use_local_search=False or True  
 
-4.自适应参数  
+4.自适应参数（2种）  
 参考文献：Li, H., Zheng, L., Chen, R., & Zhang, X. (2024). Stochastic resource leveling in projects with flexible structures. COMPUTERS & OPERATIONS RESEARCH, 169. https://doi.org/10.1016/j.cor.2024.106753  
 - 变异算子自适应参数  
 描述：针对rand/1、rand/2、best/1和best/2生效。F = F_max * exp(iteration * log(F_min/F_max) / max_iterations)  
