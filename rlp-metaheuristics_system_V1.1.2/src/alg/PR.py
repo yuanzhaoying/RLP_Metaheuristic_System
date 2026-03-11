@@ -165,8 +165,10 @@ class PathRelinkingST:
                 start_time = self.rng.integers(self.decoder.es[j], self.decoder.ls[j] + 1)
                 solution.append(start_time)
             
-            obj, _ = self.evaluator.evaluate(solution)
-            self.elite_pool.append((solution, obj))
+            # 修复解的约束
+            repaired = self._repair(solution)
+            obj, _ = self.evaluator.evaluate(repaired)
+            self.elite_pool.append((repaired, obj))
         
         self.elite_pool.sort(key=lambda x: x[1])
     
