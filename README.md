@@ -18,8 +18,9 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 ## V1.1.2  
 ## [1]添加了禁忌搜索（TS）、路径重连（PR）算法、遗传（GA）算法、差分进化（DE）及算子  
 ## [2]添加了算子组合使用说明
-
-### TS可选算子
+## V1.1.3  
+## [1]添加了粒子群（PSO）、蝙蝠算法（BA）、和谐搜索（HS）算法及算子  
+### 一、TS可选算子
 
 1.禁忌表长度（2种）  
 - 静态禁忌列表  
@@ -30,7 +31,7 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 描述：初始为固定值n（活动数量），当 “无改进迭代次数” 超过阈值（nr_noimprove==10）时，动态调整长度：从均匀分布(√n ,4√n)中随机选取新长度，增强搜索多样性，避免陷入局部最优。  
 代码：strategy = ‘dynamic’
 
-### PR可选算子
+### 二、PR可选算子
 
 参考文献：Ranjbar, M. (2013). A path-relinking metaheuristic for the resource levelling problem. JOURNAL OF THE OPERATIONAL RESEARCH SOCIETY, 64(7), 1071–1078. https://doi.org/10.1057/jors.2012.119.  
 
@@ -61,7 +62,7 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 代码：path_strategy: str = "bidirectional"
 
 
-### 遗传算法（GA）可选算子
+### 三、遗传算法（GA）可选算子
 
 1. 选择算子（2种）  
 - 轮盘赌  
@@ -104,13 +105,26 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 4.是否启用精英保留  
 描述：将父代和子代合并，选择最优的POP个个体  
 代码：elitism=True or False  
-5.局部搜索   
-- 双遍局部搜索  
-参考文献：Li, H., Xiong, L., Liu, Y., & Li, H. (2018). An effective genetic algorithm for the resource levelling problem with generalised precedence relations. INTERNATIONAL JOURNAL OF PRODUCTION RESEARCH, 56(5), 2054–2075. https://doi.org/10.1080/00207543.2017.1355120.   
+5.局部搜索  
+- 不使用局部搜索  
+代码：local_search_strategy = "none"  
+- 双遍局部搜索   
+参考文献：Li, H., Xiong, L., Liu, Y., & Li, H. (2018). An effective genetic algorithm for the resource levelling problem with generalised precedence relations. INTERNATIONAL JOURNAL OF PRODUCTION RESEARCH, 56(5), 2054–2075. https://doi.org/10.1080/00207543.2017.1355120.  
 描述：先升序再降序遍历，确保充分搜索。每隔N代执行一次，平衡计算成本和解质量。算法结束时对最优解再执行一次局部搜索  
-代码：use_local_search=True/False, local_search_interval=10  
+代码：local_search_strategy = " activity", local_search_interval=10  
+-	移位局部搜索   
+参考文献：Iranagh, M., Sonmez, R., Atan, T., Uysal, F., & Bettemir, O. H. (2023). A Memetic Algorithm for the Solution of the Resource Leveling Problem. BUILDINGS, 13(11). https://doi.org/10.3390/buildings13112738  
+描述：在活动的浮动时间范围内，向前或向后移动非关键活动，检查资源曲线是否更平滑。如果资源波动减小，则接受新的调度。  
+代码：local_search_strategy = "shift"  
 
-### 差分进化（DE）
+6.对变异结果是否接受   
+参考文献：Iranagh, M., Sonmez, R., Atan, T., Uysal, F., & Bettemir, O. H. (2023). A Memetic Algorithm for the Solution of the Resource Leveling Problem. BUILDINGS, 13(11). https://doi.org/10.3390/buildings13112738   
+描述：当变异后得到新解时，求解目标函数，如果更优→直接接受；如果更差→按概率接受  
+代码：use_sa_acceptance = True or False  
+
+
+
+### 四、差分进化（DE）
 1. 变异算子（6种）  
 - rand/1  
 描述：随机选择3个个体，v = x_r1 + F * (x_r2 - x_r3)  
@@ -154,6 +168,49 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 - 交叉算子自适应参数  
 描述：针对所有交叉算子生效。CR = CR_min * exp(iteration * log(CR_max/CR_min) / max_iterations)  
 代码：use_adaptive_CR: bool = False or True  
+
+
+### 五、粒子群算法（PSO） 
+参考文献：Almatroushi, H., Hariga, M., As’ad, R., & Al-Bar, A. (2020). The multi resource leveling and materials procurement problem: An integrated approach. ENGINEERING CONSTRUCTION AND ARCHITECTURAL MANAGEMENT, 27(9), 2135–2161.   
+1.局部搜索  
+- 模拟退火（SA）局部搜索     
+描述：以当前算法找到的最优个体为基础，在其邻域空间内进行精细的随机扰动与寻优，通过概率性接收劣化解的机制避免陷入局部最优  
+代码：local_search_strategy="sa"  
+- 不使用  
+代码：local_search_strategy="none"   
+2. 自适应停滞重启操作  
+描述：当算法连续多代未更新最优解（判定为停滞）时，将粒子群重新初始化到解空间内，强制粒子群跳出当前局部最优区域，以探索新的搜索区域。  
+代码：restart_strategy="adaptive", restart_threshold=30  
+
+### 六、蝙蝠算法（BA）  
+1. 局部搜索  
+- 不使用局部搜索  
+- TLIM（Two-Level Iterative Method）局部搜索  
+参考文献：李洪波, 熊励, 刘寅斌, & 魏文超. (2019a). 广义优先关系约束下项目资源均衡的改进蝙蝠算法. 系统工程学报, 34(5), 709–720. https://doi.org/10.13383/j.cnki.jse.2019.05.012  
+描述：两阶段优化。Forward阶段：从第一个活动到最后一个活动，逐个优化；Backward阶段：从最后一个活动到第一个活动，逐个优化。  
+代码：local_search_strategy="tlim"   
+
+
+### 七、和谐搜索（HS）  
+参考文献： Ponz-Tienda, J., Salcedo-Bernal, A., Pellicer, E., & Beniloch-Marco, J. (2017). Improved Adaptive Harmony Search algorithm for the Resource Leveling Problem with minimal lags. AUTOMATION IN CONSTRUCTION, 77, 82–92. https://doi.org/10.1016/j.autcon.2017.01.018    
+ 
+1.参数调整策略  
+- 自适应参数调整    
+描述：PAR线性增加，BW指数衰减。早期强探索，后期强开发。  
+代码：parameter_strategy: str = "adaptive"  
+- 固定参数  
+描述：PAR和BW定死    
+代码：parameter_strategy: str = "fixed"   
+
+2.初始化策略  
+- 随机初始化  
+描述：在ES-LS范围内随机生成  
+代码：initialization_strategy: str = "random"  
+
+-	前向调度初始化  
+描述：每个活动以0.5概率选择ES或LS，更好的初始解质量  
+代码：initialization_strategy: str = "forward"   
+
 
 
 
