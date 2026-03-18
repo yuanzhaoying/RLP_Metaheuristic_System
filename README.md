@@ -18,7 +18,8 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 ## V1.1.2  
 ## [1]添加了禁忌搜索（TS）、路径重连（PR）算法、遗传（GA）算法、差分进化（DE）及算子  
 ## [2]添加了算子组合使用说明
-
+## V1.1.3  
+## [1]添加了粒子群（PSO）、蝙蝠算法（BA）、和谐搜索（HS）算法及算子  
 ### 一、TS可选算子
 
 1.禁忌表长度（2种）  
@@ -197,7 +198,7 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 - 自适应参数调整    
 描述：PAR线性增加，BW指数衰减。早期强探索，后期强开发。  
 代码：parameter_strategy: str = "adaptive"  
--固定参数  
+- 固定参数  
 描述：PAR和BW定死    
 代码：parameter_strategy: str = "fixed"   
 
