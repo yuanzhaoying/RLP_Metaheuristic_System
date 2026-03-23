@@ -211,6 +211,18 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 描述：每个活动以0.5概率选择ES或LS，更好的初始解质量  
 代码：initialization_strategy: str = "forward"   
 
+## V1.2.1  
+完成了前后端的交互，基本实现要求
+
+
+
+
+
+
+
+
+
+
 
 
 
