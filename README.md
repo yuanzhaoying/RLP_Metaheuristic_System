@@ -212,7 +212,15 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 代码：initialization_strategy: str = "forward"   
 
 ## V1.2.1  
-完成了前后端的交互，基本实现要求
+完成了web前后端的交互，基本实现要求
+
+## V1.3.1  
+调试完web端包括机器学习的内容。
+
+## V2.1.1  
+以pySide6为框架，基本实现要求
+
+
 
 
 
