@@ -220,6 +220,10 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 ## V2.1.1  
 以pySide6为框架，基本实现要求
 
+## V2.1.2
+【1】添加了基于位移的编码  
+【2】添加了活动列表+位移率编码（随机键）
+
 
 
 
