@@ -1,0 +1,13 @@
+algo_id,instance_id,ratio
+DE_rand/1_fixedF_bin_fixedCR_noLS,J30_1.RCP,1.13954459995822
+DE_rand/1_fixedF_bin_fixedCR_noLS,J30_2.RCP,1.0761787944229504
+DE_rand/1_fixedF_bin_fixedCR_noLS,J30_3.RCP,1.050530331934376
+DE_rand/1_fixedF_bin_fixedCR_noLS,J30_4.RCP,1.1802638584866592
+BA_none,J30_1.RCP,1.0133695425109674
+BA_none,J30_2.RCP,1.0975527007718353
+BA_none,J30_3.RCP,1.0492178557802363
+BA_none,J30_4.RCP,1.0
+HS_fixed_random,J30_1.RCP,1.0
+HS_fixed_random,J30_2.RCP,1.0
+HS_fixed_random,J30_3.RCP,1.0
+HS_fixed_random,J30_4.RCP,1.058569484706857

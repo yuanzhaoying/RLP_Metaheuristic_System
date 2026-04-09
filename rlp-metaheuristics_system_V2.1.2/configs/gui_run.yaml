@@ -1,0 +1,71 @@
+aux_time_budget:
+  budget_sec: 1.0
+  enabled: false
+baseline_T0:
+  seed: 0
+  tries: 30
+deltas:
+- 0.0
+features:
+  enabled: false
+instance_sets:
+- limit: 10
+  name: j30
+main_budget:
+  max_evals: 1000
+  mode: evals
+ml:
+  enabled: false
+objective:
+  id: SOS
+  mode: builtin
+operator_config:
+  ba_ls: none
+  de_adaptive_cr: false
+  de_adaptive_f: false
+  de_crossover: bin
+  de_ls: false
+  de_mutation: rand/1
+  ga_crossover: single_point
+  ga_elitism: false
+  ga_init: random
+  ga_ls: none
+  ga_mutation: random
+  ga_neighborhood: false
+  ga_sa_acceptance: false
+  ga_selection: roulette
+  hs_init: random
+  hs_param: fixed
+  pr_ls: false
+  pr_path: forward
+  pr_selection: best
+  pso_ls: none
+  pso_restart: none
+  ts_strategy: static
+reproducibility:
+  enabled: false
+rlp:
+  horizon_mode: slack_over_T0
+  renewable: true
+seeds:
+- 0
+- 1
+selected_algorithms:
+- BA
+- PSO
+- HS
+- GA
+- DE
+- PR
+- TS
+stats:
+  layerA:
+    enabled: true
+  layerB:
+    enabled: false
+trace_fracs:
+- 0.05
+- 0.1
+- 0.2
+- 0.5
+- 1.0
