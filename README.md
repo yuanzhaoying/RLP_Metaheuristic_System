@@ -223,7 +223,8 @@ RLP Meta heuristic Algorithm Selection System based on PSPLIB
 ## V2.1.2
 【1】添加了基于位移的编码  
 【2】添加了活动列表+位移率编码（随机键）
-
+## V2.1.3
+【1】添加了活动优先级的编码  
 
 
 
