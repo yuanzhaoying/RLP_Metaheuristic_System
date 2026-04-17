@@ -1,0 +1,74 @@
+psplib:
+  data_dir: ""
+
+experiment:
+  horizon:
+    slack_delta: 0.1
+    method: "heuristic"
+
+  budget:
+    max_evaluations: 5000
+    max_iterations: 1000
+    time_limit_sec: 300
+
+  random:
+    seeds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
+
+  split:
+    train_ratio: 0.7
+    stratify_by: "network_complexity"
+
+algorithms:
+  representations:
+    - name: "activity_list"
+      description: "Activity List (permutation)"
+
+  skeletons:
+    - name: "ils"
+      params:
+        max_iterations: 100
+        perturbation_strength: 5
+        local_search_limit: 200
+        acceptance: "best"
+
+  operators:
+    crossover:
+      - name: "ox1"
+    mutation:
+      - name: "swap"
+      - name: "insertion"
+    local_search:
+      - name: "first_improvement"
+
+objective:
+  primary: "leveling_variance"
+  resources:
+    - "all"
+
+statistics:
+  alpha: 0.05
+  test:
+    - "friedman"
+    - "wilcoxon"
+  posthoc: "holm"
+
+ml_selector:
+  model: "random_forest"
+  params:
+    n_estimators: 500
+    max_depth: 10
+    min_samples_split: 5
+    random_state: 42
+  cv:
+    outer_folds: 5
+    inner_folds: 3
+
+output:
+  results_dir: "results"
+  raw_dir: "raw"
+  summary_dir: "summary"
+  stats_dir: "stats"
+  plots_dir: "plots"
+  ml_dir: "ml"
+  plot_formats: ["png"]
+  dpi: 300
